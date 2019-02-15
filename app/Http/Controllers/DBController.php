@@ -10,13 +10,12 @@ class DBController extends Controller
     
     public function getTables(){
 
-        $tables = DB::select('SHOW TABLES');
-        dd($tables);
+        $tables = DB::select('show tables');
+        foreach($tables as $table)
+            $my_tables[] = $table->Tables_in_clarity20 ;
+
         return response()->json([
-            'tables' => [
-                'users',
-                'clinics'
-            ]
+            'tables' => $my_tables
         ],200);
     }
 }
